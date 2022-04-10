@@ -23,10 +23,19 @@ class App extends Component {
           </p>
           <button
             onClick={() => {
-              this.setState({
-                name: { firstName: "Johnny", lastName: "Bravo" },
-              });
-              console.log(this.state);
+              this.setState(
+                () => {
+                  return {
+                    name: { firstName: "Johnny", lastName: "Bravo" },
+                  };
+                },
+                // the second (next) callback is optional
+                // if present, it will always run AFTER the state
+                // has been updated
+                () => {
+                  console.log(this.state);
+                }
+              );
             }}
           >
             change name
